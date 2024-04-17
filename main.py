@@ -17,5 +17,10 @@ palindrome_generator = infinite_palindrome_generator()
 for i in palindrome_generator:
     print(i)
     digits = math.floor(math.log10(i)+1)
+
+    if digits >= 5:
+        # throw causes the generator to throw and exception
+        palindrome_generator.throw(ValueError("Palindrome too large!"))
+
     # send method allows you to inject a value into the last yield statement where you stopped
     palindrome_generator.send(10**digits)
