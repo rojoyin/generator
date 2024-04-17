@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import math
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from utils import is_palindrome
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def infinite_palindrome_generator():
+    num = 0
+    while True:
+        if is_palindrome(num):
+            i = (yield num)  # anything we pass as argument to the `send` method will be injected here
+            if i is not None:
+                num = i
+        num += 1
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+palindrome_generator = infinite_palindrome_generator()
+for i in palindrome_generator:
+    print(i)
+    digits = math.floor(math.log10(i)+1)
+    palindrome_generator.send(10**digits)
