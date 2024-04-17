@@ -17,4 +17,5 @@ palindrome_generator = infinite_palindrome_generator()
 for i in palindrome_generator:
     print(i)
     digits = math.floor(math.log10(i)+1)
+    # send method allows you to inject a value into the last yield statement where you stopped
     palindrome_generator.send(10**digits)
