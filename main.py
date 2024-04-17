@@ -1,4 +1,5 @@
 import math
+import random
 
 from utils import is_palindrome
 
@@ -17,6 +18,10 @@ palindrome_generator = infinite_palindrome_generator()
 for i in palindrome_generator:
     print(i)
     digits = math.floor(math.log10(i)+1)
+
+    if random.randint(0, 1):
+        # close method exhausts the generator, i.e. the sequence finished raising a StopIteration error
+        palindrome_generator.close()
 
     if digits >= 5:
         # throw causes the generator to throw and exception
