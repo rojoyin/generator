@@ -1,3 +1,6 @@
+from utils import is_palindrome
+
+
 def test_is_palindrome():
     number = 121
     assert is_palindrome(number)
@@ -15,4 +18,9 @@ def test_one_digit_number():
 
 def test_zero_palindrome():
     number = 0
+    assert not is_palindrome(number)
+
+
+def test_negative_palindrome():
+    number = -121
     assert not is_palindrome(number)
